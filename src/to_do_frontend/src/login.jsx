@@ -60,7 +60,7 @@ function Login() {
 
   return (
     <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
+      <center><img src="/logo2.svg" alt="DFINITY logo" />
       <br />
       <br />      
       <div class="panel"> 
@@ -68,7 +68,7 @@ function Login() {
         {isLoggedIn && <button id="logout" onClick={logout}>Logout</button>}
         <br/>
         <label id="principalText"></label>                  
-      </div>
+      </div></center>
     </main>
   );
 }

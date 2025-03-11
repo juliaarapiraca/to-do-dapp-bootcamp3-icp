@@ -4,35 +4,34 @@ import { to_do_backend } from 'declarations/to_do_backend';
 function tarefas() {
   const [tarefas, setTarefas] = useState([]);
   const [totalTarefasAndamento, setTotalTarefasAndamento] = useState(0);
-  const [totalConcluidas, setTotalConcluidas] = useState(0);  // Renomeado para evitar conflito
+  const [totalConcluidas, setTotalConcluidas] = useState(0); 
 
-  // Função para buscar o total de tarefas em andamento
+  
   async function totalTarefasEmAndamento() {
     const total = parseInt(await to_do_backend.totalTarefasEmAndamento());
     setTotalTarefasAndamento(total);
   }
 
-  // Função renomeada para buscar o total de tarefas concluídas
+  
   async function obterTotalTarefasConcluidas() {
     const total = parseInt(await to_do_backend.totalTarefasConcluidas());
-    setTotalConcluidas(total);  // Atualizando o estado com o total de tarefas concluídas
+    setTotalConcluidas(total);  
   }
 
-  // Função para consultar todas as tarefas
+  
   async function consultarTarefas() {
     const todasTarefas = await to_do_backend.getTarefas();
     setTarefas(todasTarefas);
-    // Atualiza os totais sempre que as tarefas são consultadas
+    
     await totalTarefasEmAndamento();
-    await obterTotalTarefasConcluidas();  // Chamando a função renomeada
+    await obterTotalTarefasConcluidas();  
   }
 
-  // Hook que executa a consulta inicial de tarefas e totais
+  
   useEffect(() => {
     consultarTarefas();
-  }, []); // Executa apenas uma vez no carregamento
+  }, []); 
 
-  // Função chamada sempre que uma tarefa é adicionada, excluída ou alterada
   const atualizarTarefas = async () => {
     await consultarTarefas();
   };
@@ -61,12 +60,12 @@ function tarefas() {
 
   async function excluir(id) {
     await to_do_backend.excluirTarefa(parseInt(id));
-    await atualizarTarefas();  // Atualiza as tarefas e totais
+    await atualizarTarefas(); 
   }
 
   async function alterar(id, categoria, descricao, urgente, concluida) {
     await to_do_backend.alterarTarefa(parseInt(id), categoria, descricao, urgente, concluida);
-    await atualizarTarefas();  // Atualiza as tarefas e totais
+    await atualizarTarefas(); 
   }
 
   async function editar(id, categoria, descricao, urgente) {
