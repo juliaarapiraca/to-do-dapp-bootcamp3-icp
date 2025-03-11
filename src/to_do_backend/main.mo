@@ -2,9 +2,14 @@ import Nat "mo:base/Nat";
 import Text "mo:base/Text";
 import Bool "mo:base/Bool";
 import Buffer "mo:base/Buffer";
+import Principal "mo:base/Principal";
 
 actor {
         
+  public shared(message) func get_principal_client() : async Text {
+    return "Principal:" # Principal.toText(message.caller) # "!";
+  };
+
   type Tarefa = {    
     id: Nat;          
     categoria: Text;   
