@@ -25,8 +25,6 @@ let actorLoginBackend = to_do_backend;
           actorLoginBackend = createActor(process.env.CANISTER_ID_LOGIN_BACKEND, {
               agent,
           });
-          
-          return window.location.href = "/tarefas/"; 
 
         },
         
