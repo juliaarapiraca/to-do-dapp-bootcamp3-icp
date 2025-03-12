@@ -5,10 +5,6 @@ import {HttpAgent} from "@dfinity/agent";
 
 let actorLoginBackend = to_do_backend;
 
-function Login() {  
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
-
   async function login() {
 
       
@@ -30,9 +26,7 @@ function Login() {
               agent,
           });
           
-          const principalText = await actorLoginBackend.get_principal_client();          
-          setIsLoggedIn(true);
-          document.getElementById("principalText").innerText = principalText;   
+          return window.location.href = "/tarefas/"; 
 
         },
         
@@ -41,7 +35,7 @@ function Login() {
                                 top=${window.screen.height / 2 - 705 / 2},
                                 toolbar=0,location=0,menubar=0,width=525,height=705
                               `,
-      })
+      });
       
       return false;
       
@@ -58,19 +52,4 @@ function Login() {
      document.getElementById("logout").style.display = "none";
   });
 
-  return (
-    <main>
-      <center><img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />      
-      <div class="panel"> 
-        {!isLoggedIn && <button id="login" onClick={login}>Login</button>}
-        {isLoggedIn && <button id="logout" onClick={logout}>Logout</button>}
-        <br/>
-        <label id="principalText"></label>                  
-      </div></center>
-    </main>
-  );
-}
-
-export default Login;
+export default login;

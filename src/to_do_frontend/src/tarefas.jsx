@@ -50,7 +50,7 @@ function tarefas() {
       await to_do_backend.alterarTarefa(parseInt(idTarefa), categoria, descricao, urgente, false);    
     }
 
-    await atualizarTarefas();  // Atualiza as tarefas e totais
+    await atualizarTarefas();
 
     event.target.elements.idTarefa.value = "";
     event.target.elements.categoria.value = "";
