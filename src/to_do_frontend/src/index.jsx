@@ -11,20 +11,14 @@ let actorLoginBackend = to_do_backend;
 
       
       await authClient.login({
-        
-        identityProvider: "https://identity.ic0.app/#authorize",
-        onSuccess: async () => {   
-          
-          const identity = authClient.getIdentity();
-          console.log(identity.getPrincipal().toText());       
-          
-          
-          const agent = new HttpAgent({identity});
-          
-          actorLoginBackend = createActor(process.env.CANISTER_ID_LOGIN_BACKEND, {
-              agent,
-          });
 
+        identityProvider: "https://identity.ic0.app/#authorize",
+        onSuccess: async () => {
+
+          const identity = authClient.getIdentity();
+          console.log(identity.getPrincipal().toText());
+
+          window.location.href = "/tarefas/";
         },
         
         windowOpenerFeatures: `
